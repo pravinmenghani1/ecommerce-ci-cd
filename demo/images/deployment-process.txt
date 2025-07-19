@@ -1,0 +1,45 @@
+E-Commerce Application Deployment Process
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                             │
+│                                   CONTINUOUS INTEGRATION                                    │
+│                                                                                             │
+├─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐         │
+│             │             │             │             │             │             │         │
+│    Code     │    Commit   │    Build    │    Test     │  Security   │   Create    │         │
+│  Changes    │     to      │   Docker    │  Automated  │    Scan     │   Docker    │         │
+│             │   GitHub    │   Image     │   Tests     │             │   Image     │         │
+│             │             │             │             │             │             │         │
+└─────┬───────┴─────┬───────┴─────┬───────┴─────┬───────┴─────┬───────┴─────┬───────┘         │
+      │             │             │             │             │             │                 │
+      │             │             │             │             │             │                 │
+      ▼             ▼             ▼             ▼             ▼             ▼                 │
+┌─────────────────────────────────────────────────────────────────────────────────────────────┘
+│                                                                                             │
+│                                   CONTINUOUS DELIVERY                                       │
+│                                                                                             │
+├─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐         │
+│             │             │             │             │             │             │         │
+│    Push     │  Update ECS │  Deploy to  │   Test in   │  Deploy to  │   Monitor   │         │
+│  Image to   │    Task     │    Beta     │    Beta     │ Production  │ Application │         │
+│    ECR      │ Definition  │             │             │             │             │         │
+│             │             │             │             │             │             │         │
+└─────┬───────┴─────┬───────┴─────┬───────┴─────┬───────┴─────┬───────┴─────┬───────┘         │
+      │             │             │             │             │             │                 │
+      │             │             │             │             │             │                 │
+      ▼             ▼             ▼             ▼             ▼             ▼                 │
+┌─────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Blue/Green Deployment Process:
+
+1. New version (Green) is deployed alongside current version (Blue)
+2. Test traffic is routed to Green environment
+3. Validation tests are performed on Green environment
+4. Traffic is gradually shifted from Blue to Green
+5. Once Green is receiving all traffic, Blue is terminated
+
+Benefits:
+- Zero downtime deployments
+- Easy rollback if issues are detected
+- Testing in production-like environment
+- Reduced risk of deployment failures

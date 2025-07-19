@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E-Commerce App Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../src/styles.css">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header class="header">
+        <div class="container header-container">
+          <a href="#" class="logo">
+            <i class="fas fa-shopping-cart"></i> E-Commerce Store
+          </a>
+          
+          <nav class="nav">
+            <ul class="nav-list">
+              <li class="nav-item">
+                <a href="#" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">Products</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-shopping-bag"></i> Cart
+                  <span class="cart-count">3</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="container">
+          <section class="hero">
+            <div class="hero-content">
+              <h1>Welcome to Our E-Commerce Store</h1>
+              <p>Discover amazing products at great prices!</p>
+              <a href="#products" class="btn btn-primary">Shop Now</a>
+            </div>
+          </section>
+
+          <section id="products" class="products-section">
+            <h2 class="section-title">Featured Products</h2>
+            
+            <div class="product-grid">
+              <!-- Product 1 -->
+              <div class="product-card">
+                <div class="product-badge">New</div>
+                <img src="https://via.placeholder.com/300x200?text=Headphones" alt="Wireless Headphones">
+                <div class="product-info">
+                  <h3 class="product-title">Wireless Headphones</h3>
+                  <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>(120)</span>
+                  </div>
+                  <p class="product-price">$99.99</p>
+                  <p class="product-description">High-quality wireless headphones with noise cancellation.</p>
+                  <div class="product-actions">
+                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-secondary"><i class="far fa-heart"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 2 -->
+              <div class="product-card">
+                <div class="product-badge sale">Sale</div>
+                <img src="https://via.placeholder.com/300x200?text=Smartphone" alt="Smartphone">
+                <div class="product-info">
+                  <h3 class="product-title">Smartphone</h3>
+                  <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span>(85)</span>
+                  </div>
+                  <p class="product-price"><span class="original-price">$799.99</span> $699.99</p>
+                  <p class="product-description">Latest smartphone with advanced camera and long battery life.</p>
+                  <div class="product-actions">
+                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-secondary"><i class="far fa-heart"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 3 -->
+              <div class="product-card">
+                <img src="https://via.placeholder.com/300x200?text=Laptop" alt="Laptop">
+                <div class="product-info">
+                  <h3 class="product-title">Laptop</h3>
+                  <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>(210)</span>
+                  </div>
+                  <p class="product-price">$1299.99</p>
+                  <p class="product-description">Powerful laptop for work and gaming.</p>
+                  <div class="product-actions">
+                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-secondary"><i class="far fa-heart"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 4 -->
+              <div class="product-card">
+                <img src="https://via.placeholder.com/300x200?text=Smartwatch" alt="Smartwatch">
+                <div class="product-info">
+                  <h3 class="product-title">Smartwatch</h3>
+                  <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <span>(67)</span>
+                  </div>
+                  <p class="product-price">$249.99</p>
+                  <p class="product-description">Track your fitness and stay connected with this smartwatch.</p>
+                  <div class="product-actions">
+                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-secondary"><i class="far fa-heart"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="features-section">
+            <div class="features-grid">
+              <div class="feature">
+                <div class="feature-icon">
+                  <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3>Fast Shipping</h3>
+                <p>Free shipping on all orders over $50</p>
+              </div>
+              
+              <div class="feature">
+                <div class="feature-icon">
+                  <i class="fas fa-undo"></i>
+                </div>
+                <h3>Easy Returns</h3>
+                <p>30-day return policy</p>
+              </div>
+              
+              <div class="feature">
+                <div class="feature-icon">
+                  <i class="fas fa-lock"></i>
+                </div>
+                <h3>Secure Payments</h3>
+                <p>Protected by industry-leading encryption</p>
+              </div>
+              
+              <div class="feature">
+                <div class="feature-icon">
+                  <i class="fas fa-headset"></i>
+                </div>
+                <h3>24/7 Support</h3>
+                <p>Our team is always here to help</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-section">
+              <h3>About Us</h3>
+              <p>We are an e-commerce store dedicated to providing high-quality products at competitive prices.</p>
+            </div>
+            
+            <div class="footer-section">
+              <h3>Contact</h3>
+              <p><i class="fas fa-envelope"></i> contact@example.com</p>
+              <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+              <p><i class="fas fa-map-marker-alt"></i> 123 E-Commerce St, City, Country</p>
+            </div>
+            
+            <div class="footer-section">
+              <h3>Follow Us</h3>
+              <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+            
+            <div class="footer-section">
+              <h3>Newsletter</h3>
+              <p>Subscribe to get updates on new products and special offers.</p>
+              <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+              </form>
+            </div>
+          </div>
+          
+          <div class="footer-bottom">
+            <p>&copy; 2025 E-Commerce Store. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS CI/CD Pipeline Visualization</title>
+    <link rel="stylesheet" href="pipeline-fixed.css">
+</head>
+<body>
+    <header>
+        <h1>AWS CI/CD Pipeline Visualization</h1>
+        <div class="subtitle">Secure Automated Deployment with Code Analysis & Multiple Environments</div>
+    </header>
+
+    <div class="container">
+        <div class="controls">
+            <button id="startBtn">Start Pipeline</button>
+            <button id="resetBtn">Reset</button>
+            <button id="nextBtn">Next Step</button>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color pending"></div>
+                <span>Pending</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color in-progress"></div>
+                <span>In Progress</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color success"></div>
+                <span>Success</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color security"></div>
+                <span>Security Check</span>
+            </div>
+        </div>
+
+        <div class="pipeline-container">
+            <div class="pipeline-image-wrapper">
+                <img src="images/pipeline-architecture.png" alt="CI/CD Pipeline Architecture" class="pipeline-image" id="pipelineImage">
+                
+                <!-- Step indicators positioned over the image -->
+                <div class="step-indicator" id="step1">1</div>
+                <div class="step-indicator" id="step2">2</div>
+                <div class="step-indicator" id="step3">3</div>
+                <div class="step-indicator" id="step4">4</div>
+                <div class="step-indicator" id="step5">5</div>
+                <div class="step-indicator" id="step6">6</div>
+                <div class="step-indicator" id="step7">7</div>
+                <div class="step-indicator" id="step8">8</div>
+                <div class="step-indicator" id="step9">9</div>
+                <div class="step-indicator" id="step10">10</div>
+            </div>
+        </div>
+
+        <div class="details-panel">
+            <div class="details-title">Pipeline Stage Details</div>
+            <div class="details-content" id="stepDetails">
+                <div class="step-details" id="step1-details"></div>
+                <div class="step-details" id="step2-details"></div>
+                <div class="step-details" id="step3-details"></div>
+                <div class="step-details" id="step4-details"></div>
+                <div class="step-details" id="step5-details"></div>
+                <div class="step-details" id="step6-details"></div>
+                <div class="step-details" id="step7-details"></div>
+                <div class="step-details" id="step8-details"></div>
+                <div class="step-details" id="step9-details"></div>
+                <div class="step-details" id="step10-details"></div>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>How This Secure CI/CD Pipeline Works</h2>
+            <ol>
+                <li><strong>Code Commit:</strong> Developers push code to Git, which triggers the pipeline.</li>
+                <li><strong>Static Analysis:</strong> Code is analyzed for quality and security issues without execution.</li>
+                <li><strong>CodeCommit to Static Analysis:</strong> Code is sent for thorough examination.</li>
+                <li><strong>Build & Test:</strong> AWS CodeBuild compiles the code and runs tests, including SAST.</li>
+                <li><strong>Staging Deployment:</strong> Application is deployed to a staging environment.</li>
+                <li><strong>Dynamic Application Security Testing:</strong> Security tools prepare to test the application.</li>
+                <li><strong>Test (DAST):</strong> Dynamic security testing is performed on the running application.</li>
+                <li><strong>Manual Approval:</strong> Team reviews test results and approves production deployment.</li>
+                <li><strong>Production Deployment:</strong> After approval, application is deployed to production.</li>
+                <li><strong>CloudWatch Events:</strong> Monitoring and notifications for the entire pipeline.</li>
+            </ol>
+            
+            <h2>Security Features in This Pipeline</h2>
+            <ul>
+                <li><strong>Static Application Security Testing (SAST):</strong> Analyzes source code for security vulnerabilities.</li>
+                <li><strong>Dynamic Application Security Testing (DAST):</strong> Tests running applications for security issues.</li>
+                <li><strong>Dependency Checking:</strong> Identifies vulnerabilities in third-party libraries.</li>
+                <li><strong>Manual Approval Gate:</strong> Ensures human review of security findings before production.</li>
+                <li><strong>Audit Logging:</strong> Tracks all changes and actions for compliance and security analysis.</li>
+            </ul>
+            
+            <h2>AWS Services Used</h2>
+            <ul>
+                <li><strong>CodePipeline:</strong> Orchestrates the entire CI/CD workflow.</li>
+                <li><strong>CodeCommit:</strong> Manages source code repositories.</li>
+                <li><strong>CodeBuild:</strong> Compiles code and runs tests.</li>
+                <li><strong>CodeDeploy:</strong> Automates application deployment.</li>
+                <li><strong>Elastic Beanstalk:</strong> Manages application environments.</li>
+                <li><strong>CloudWatch:</strong> Monitors applications and infrastructure.</li>
+                <li><strong>CloudTrail:</strong> Logs API activity for audit purposes.</li>
+                <li><strong>AWS Config:</strong> Tracks resource configurations for compliance.</li>
+                <li><strong>S3:</strong> Stores artifacts and deployment packages.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="pipeline-animation-fixed.js"></script>
+</body>
+</html>

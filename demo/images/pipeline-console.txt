@@ -1,0 +1,41 @@
+AWS CodePipeline Console View
+============================
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│ AWS CodePipeline > Pipelines > ecommerce-pipeline                                           │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                             │
+│  Pipeline: ecommerce-pipeline                                                Status: Succeeded │
+│                                                                                             │
+│  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐               │
+│  │   Source    │     │    Build    │     │    Test     │     │   Deploy    │               │
+│  │  SUCCEEDED  │────▶│  SUCCEEDED  │────▶│  SUCCEEDED  │────▶│  SUCCEEDED  │               │
+│  │             │     │             │     │             │     │             │               │
+│  └─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘               │
+│                                                                                             │
+│  Source                                                                                     │
+│  ├─ Provider: GitHub                                                                        │
+│  ├─ Repository: username/ecommerce-app                                                      │
+│  └─ Branch: main                                                                            │
+│                                                                                             │
+│  Build                                                                                      │
+│  ├─ Provider: AWS CodeBuild                                                                 │
+│  ├─ Project: ecommerce-build                                                                │
+│  └─ Build ID: ecommerce-build:b93a17e1-e3c2-4f4a-a0e3-ab8d23fe0c71                         │
+│                                                                                             │
+│  Test                                                                                       │
+│  ├─ Provider: AWS CodeBuild                                                                 │
+│  ├─ Project: ecommerce-test                                                                 │
+│  └─ Build ID: ecommerce-test:c45b28f2-d1a3-4e5b-b7c8-9d12ef34g567                          │
+│                                                                                             │
+│  Deploy                                                                                     │
+│  ├─ Provider: AWS CodeDeploy                                                                │
+│  ├─ Application: ecommerce-app                                                              │
+│  └─ Deployment Group: ecommerce-production                                                  │
+│                                                                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Recent Executions:
+- Execution ID: 8f7e6d5c-4b3a-2a1b-9c8d-7e6f5d4c3b2a | Status: Succeeded | Start: 2025-07-19 13:45:22
+- Execution ID: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p | Status: Succeeded | Start: 2025-07-18 10:30:15
+- Execution ID: 9p8o7n6m-5l4k-3j2i-1h0g-9f8e7d6c5b4a | Status: Failed    | Start: 2025-07-17 14:22:37

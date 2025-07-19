@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS CI/CD Pipeline Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>AWS CI/CD Pipeline Visualization</h1>
+        <div class="subtitle">Automated Deployment with GitHub, CodeBuild, CodeDeploy, and AWS Services</div>
+    </header>
+
+    <div class="container">
+        <div class="controls">
+            <button id="startBtn">Start Pipeline</button>
+            <button id="resetBtn">Reset</button>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color pending"></div>
+                <span>Pending</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color in-progress"></div>
+                <span>In Progress</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color success"></div>
+                <span>Success</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color failure"></div>
+                <span>Failure</span>
+            </div>
+        </div>
+
+        <div class="pipeline-container">
+            <div class="user">
+                <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="Developer">
+            </div>
+            
+            <div class="code-commit">
+                <i>✓</i>
+            </div>
+            
+            <div class="pipeline">
+                <div class="progress-line" id="progressLine"></div>
+                
+                <div class="stage" id="github">
+                    <div class="stage-icon">
+                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+                    </div>
+                    <div class="stage-name">GitHub</div>
+                    <div class="stage-description">Source Code Repository</div>
+                    <div class="tooltip">Developer pushes code to GitHub repository</div>
+                </div>
+                
+                <div class="stage" id="codebuild">
+                    <div class="stage-icon">
+                        <img src="https://d1.awsstatic.com/icons/aws-icons-v2/aws-codebuild.c37a2a4c9c7e4d5a9a5d2f5a1e1c1f1a.png" alt="CodeBuild">
+                    </div>
+                    <div class="stage-name">CodeBuild</div>
+                    <div class="stage-description">Build & Test Code</div>
+                    <div class="tooltip">Compiles code, runs tests, and creates artifacts</div>
+                </div>
+                
+                <div class="stage" id="codepipeline">
+                    <div class="stage-icon">
+                        <img src="https://d1.awsstatic.com/icons/aws-icons-v2/aws-codepipeline.c37a2a4c9c7e4d5a9a5d2f5a1e1c1f1a.png" alt="CodePipeline">
+                    </div>
+                    <div class="stage-name">CodePipeline</div>
+                    <div class="stage-description">Orchestrates Pipeline</div>
+                    <div class="tooltip">Manages workflow between stages</div>
+                </div>
+                
+                <div class="stage" id="codedeploy">
+                    <div class="stage-icon">
+                        <img src="https://d1.awsstatic.com/icons/aws-icons-v2/aws-codedeploy.c37a2a4c9c7e4d5a9a5d2f5a1e1c1f1a.png" alt="CodeDeploy">
+                    </div>
+                    <div class="stage-name">CodeDeploy</div>
+                    <div class="stage-description">Deployment Service</div>
+                    <div class="tooltip">Automates application deployments to EC2 instances</div>
+                </div>
+                
+                <div class="stage" id="ec2">
+                    <div class="stage-icon">
+                        <img src="https://d1.awsstatic.com/icons/aws-icons-v2/aws-ec2.c37a2a4c9c7e4d5a9a5d2f5a1e1c1f1a.png" alt="EC2">
+                    </div>
+                    <div class="stage-name">EC2 & ASG</div>
+                    <div class="stage-description">Compute Resources</div>
+                    <div class="tooltip">Servers running your application with auto-scaling</div>
+                </div>
+                
+                <div class="stage" id="alb">
+                    <div class="stage-icon">
+                        <img src="https://d1.awsstatic.com/icons/aws-icons-v2/aws-elastic-load-balancing.c37a2a4c9c7e4d5a9a5d2f5a1e1c1f1a.png" alt="ALB">
+                    </div>
+                    <div class="stage-name">ALB</div>
+                    <div class="stage-description">Load Balancer</div>
+                    <div class="tooltip">Distributes traffic to EC2 instances</div>
+                </div>
+                
+                <div class="stage" id="users">
+                    <div class="stage-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3126/3126647.png" alt="Users">
+                    </div>
+                    <div class="stage-name">Users</div>
+                    <div class="stage-description">End Users</div>
+                    <div class="tooltip">Users accessing your application</div>
+                </div>
+            </div>
+            
+            <div class="server-container">
+                <div class="server" id="server1">
+                    <div class="server-light"></div>
+                    <div class="server-rack"></div>
+                    <div class="server-rack"></div>
+                    <div class="server-rack"></div>
+                </div>
+                <div class="server-label">Application Server</div>
+            </div>
+        </div>
+
+        <div class="details-panel">
+            <div class="details-title">Pipeline Stage Details</div>
+            <div class="details-content" id="stageDetails">
+                <div class="service-details active" id="github-details">
+                    <h3>GitHub Repository</h3>
+                    <p>The CI/CD pipeline begins with developers pushing code to a GitHub repository. This serves as the source control system where all code changes are tracked and managed.</p>
+                    <p><strong>Key Functions:</strong></p>
+                    <ul>
+                        <li>Source code management</li>
+                        <li>Version control</li>
+                        <li>Collaboration between developers</li>
+                        <li>Pull requests and code reviews</li>
+                        <li>Triggers the CI/CD pipeline on code changes</li>
+                    </ul>
+                </div>
+                
+                <div class="service-details" id="codebuild-details">
+                    <h3>AWS CodeBuild</h3>
+                    <p>CodeBuild is a fully managed build service that compiles source code, runs tests, and produces software packages that are ready to deploy.</p>
+                    <p><strong>Key Functions:</strong></p>
+                    <ul>
+                        <li>Compiles and builds the application</li>
+                        <li>Runs unit tests and integration tests</li>
+                        <li>Creates deployment artifacts</li>
+                        <li>Performs code quality checks</li>
+                        <li>Generates build reports</li>
+                    </ul>
+                </div>
+                
+                <div class="service-details" id="codepipeline-details">
+                    <h3>AWS CodePipeline</h3>
+                    <p>CodePipeline is a continuous delivery service that automates the release process, enabling you to rapidly and reliably deliver features and updates.</p>
+                    <p><strong>Key Functions:</strong></p>
+                    <ul>
+                        <li>Orchestrates the entire CI/CD workflow</li>
+                        <li>Manages transitions between stages</li>
+                        <li>Provides visibility into pipeline status</li>
+                        <li>Integrates with other AWS services</li>
+                        <li>Supports manual approval steps when needed</li>
+                    </ul>
+                </div>
+                
+                <div class="service-details" id="codedeploy-details">
+                    <h3>AWS CodeDeploy</h3>
+                    <p>CodeDeploy automates application deployments to Amazon EC2 instances, on-premises instances, serverless Lambda functions, or Amazon ECS services.</p>
+                    <p><strong>Key Functions:</strong></p>
+                    <ul>
+                        <li>Automates deployment to target environments</li>
+                        <li>Supports blue/green deployments</li>
+                        <li>Handles rollbacks if deployments fail</li>
+                        <li>Minimizes downtime during deployments</li>
+                        <li>Provides deployment history and tracking</li>
+                    </ul>
+                </div>
+                
+                <div class="service-details" id="ec2-details">
+                    <h3>EC2 & Auto Scaling Group</h3>
+                    <p>Amazon EC2 provides resizable compute capacity in the cloud, while Auto Scaling Groups automatically adjust capacity to maintain performance and availability.</p>
+                    <p><strong>Key Functions:</strong></p>
+                    <ul>
+                        <li>Hosts the application on virtual servers</li>
+                        <li>Automatically scales based on demand</li>
+                        <li>Ensures high availability across multiple AZs</li>
+                        <li>Replaces unhealthy instances</li>
+                        <li>Integrates with load balancers for traffic distribution</li>
+                    </ul>
+                </div>
+                
+                <div class="service-details" id="alb-details">
+                    <h3>Application Load Balancer (ALB)</h3>
+                    <p>ALB automatically distributes incoming application traffic across multiple targets, such as EC2 instances, in multiple Availability Zones.</p>
+                    <p><strong>Key Functions:</strong></p>
+                    <ul>
+                        <li>Distributes traffic evenly across instances</li>
+                        <li>Performs health checks on targets</li>
+                        <li>Supports path-based routing</li>
+                        <li>Enables SSL/TLS termination</li>
+                        <li>Provides high availability for applications</li>
+                    </ul>
+                </div>
+                
+                <div class="service-details" id="users-details">
+                    <h3>End Users</h3>
+                    <p>The final stage of the pipeline is delivering the application to end users who access it through the internet.</p>
+                    <p><strong>Key Points:</strong></p>
+                    <ul>
+                        <li>Users access the application through the ALB endpoint</li>
+                        <li>Traffic is distributed across healthy EC2 instances</li>
+                        <li>Users experience minimal downtime during updates</li>
+                        <li>Application scales automatically to handle user load</li>
+                        <li>Continuous delivery ensures users get the latest features quickly</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>How the CI/CD Pipeline Works</h2>
+            <ol>
+                <li><strong>Code Commit:</strong> A developer commits code changes to the GitHub repository, which triggers the CI/CD pipeline.</li>
+                <li><strong>Source Stage:</strong> AWS CodePipeline detects the change in the GitHub repository and pulls the latest code.</li>
+                <li><strong>Build Stage:</strong> CodeBuild compiles the code, runs tests, and packages the application into deployable artifacts.</li>
+                <li><strong>Deploy Stage:</strong> CodeDeploy takes the artifacts and deploys them to the target environment (EC2 instances in an Auto Scaling Group).</li>
+                <li><strong>Infrastructure:</strong> The application runs on EC2 instances within an Auto Scaling Group, which can scale based on demand.</li>
+                <li><strong>Load Balancing:</strong> The Application Load Balancer distributes traffic to healthy EC2 instances.</li>
+                <li><strong>User Access:</strong> End users access the application through the ALB endpoint, experiencing minimal downtime during updates.</li>
+            </ol>
+            
+            <h2>Key AWS Services in the Pipeline</h2>
+            <ul>
+                <li><strong>IAM (Identity and Access Management):</strong> Manages permissions for services to interact with each other securely.</li>
+                <li><strong>CodeBuild:</strong> Compiles source code, runs tests, and produces software packages.</li>
+                <li><strong>CodeDeploy:</strong> Automates application deployments to EC2 instances.</li>
+                <li><strong>CodePipeline:</strong> Orchestrates the workflow between different stages of the pipeline.</li>
+                <li><strong>EC2 (Elastic Compute Cloud):</strong> Provides virtual servers in the cloud to run applications.</li>
+                <li><strong>Auto Scaling Group:</strong> Automatically adjusts capacity to maintain performance and availability.</li>
+                <li><strong>ALB (Application Load Balancer):</strong> Distributes incoming application traffic across multiple targets.</li>
+                <li><strong>CloudWatch:</strong> Monitors the application and infrastructure, collecting metrics and logs.</li>
+                <li><strong>SNS (Simple Notification Service):</strong> Sends notifications about pipeline events and alerts.</li>
+            </ul>
+            
+            <h2>Benefits of This CI/CD Pipeline</h2>
+            <ul>
+                <li><strong>Automation:</strong> Reduces manual intervention and human error.</li>
+                <li><strong>Speed:</strong> Accelerates the delivery of new features and bug fixes.</li>
+                <li><strong>Reliability:</strong> Consistent and repeatable deployment process.</li>
+                <li><strong>Quality:</strong> Automated testing ensures code quality before deployment.</li>
+                <li><strong>Scalability:</strong> Infrastructure automatically scales with demand.</li>
+                <li><strong>Visibility:</strong> Clear insights into the deployment process and application health.</li>
+                <li><strong>Rollbacks:</strong> Easy recovery from failed deployments.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

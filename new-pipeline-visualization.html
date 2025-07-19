@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS CI/CD Pipeline Visualization</title>
+    <link rel="stylesheet" href="new-pipeline-styles.css">
+</head>
+<body>
+    <header>
+        <h1>AWS CI/CD Pipeline Visualization</h1>
+        <div class="subtitle">Automated Deployment from Source to Production</div>
+    </header>
+
+    <div class="container">
+        <div class="controls">
+            <button id="startBtn">Start Pipeline</button>
+            <button id="resetBtn">Reset</button>
+            <button id="nextBtn">Next Step</button>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color pending"></div>
+                <span>Pending</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color in-progress"></div>
+                <span>In Progress</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color success"></div>
+                <span>Success</span>
+            </div>
+        </div>
+
+        <div class="pipeline-container">
+            <div class="pipeline-image-wrapper">
+                <img src="images/new.png" alt="CI/CD Pipeline Architecture" class="pipeline-image" id="pipelineImage">
+                
+                <!-- Step indicators positioned over the image -->
+                <div class="step-indicator" id="step1">1</div>
+                <div class="step-indicator" id="step2">2</div>
+                <div class="step-indicator" id="step3">3</div>
+                <div class="step-indicator" id="step4">4</div>
+                <div class="step-indicator" id="step5">5</div>
+            </div>
+        </div>
+
+        <div class="details-panel">
+            <div class="details-title">Pipeline Stage Details</div>
+            <div class="details-content" id="stepDetails">
+                <div class="step-details" id="step1-details"></div>
+                <div class="step-details" id="step2-details"></div>
+                <div class="step-details" id="step3-details"></div>
+                <div class="step-details" id="step4-details"></div>
+                <div class="step-details" id="step5-details"></div>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h2>How This AWS CI/CD Pipeline Works</h2>
+            <ol>
+                <li><strong>Source Stage:</strong> Code is stored in AWS CodeCommit and artifacts in Amazon S3.</li>
+                <li><strong>Pipeline Trigger:</strong> Changes to the source code trigger the pipeline.</li>
+                <li><strong>Beta Deployment:</strong> AWS CodeDeploy deploys the application to EC2 instances in the beta environment.</li>
+                <li><strong>Testing:</strong> The application is tested in the beta environment.</li>
+                <li><strong>Production Deployment:</strong> After successful testing, AWS CodeDeploy deploys to production EC2 instances.</li>
+            </ol>
+            
+            <h2>AWS Services Used</h2>
+            <ul>
+                <li><strong>AWS CodePipeline:</strong> Orchestrates the entire CI/CD workflow.</li>
+                <li><strong>AWS CodeCommit:</strong> Manages source code repositories.</li>
+                <li><strong>Amazon S3:</strong> Stores artifacts and deployment packages.</li>
+                <li><strong>AWS CodeDeploy:</strong> Automates application deployment to EC2 instances.</li>
+                <li><strong>Amazon EC2:</strong> Hosts the application in both beta and production environments.</li>
+            </ul>
+            
+            <h2>Benefits of This Pipeline</h2>
+            <ul>
+                <li><strong>Automation:</strong> Reduces manual intervention and human error.</li>
+                <li><strong>Consistency:</strong> Ensures consistent deployments across environments.</li>
+                <li><strong>Speed:</strong> Accelerates the delivery of new features and bug fixes.</li>
+                <li><strong>Reliability:</strong> Improves application stability through automated testing.</li>
+                <li><strong>Scalability:</strong> Easily scales to handle more complex deployment scenarios.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="new-pipeline-animation.js"></script>
+</body>
+</html>

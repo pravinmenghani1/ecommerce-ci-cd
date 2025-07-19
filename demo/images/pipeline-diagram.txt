@@ -1,0 +1,39 @@
+CI/CD Pipeline Architecture for E-Commerce Application
+
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│             │     │             │     │             │     │             │     │             │
+│   GitHub    │────▶│ CodePipeline│────▶│  CodeBuild  │────▶│ CodeDeploy  │────▶│     ECS     │
+│  Repository │     │             │     │             │     │             │     │   Cluster   │
+│             │     │             │     │             │     │             │     │             │
+└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
+       │                                       │                                       │
+       │                                       ▼                                       ▼
+       │                               ┌─────────────┐                         ┌─────────────┐
+       │                               │             │                         │             │
+       │                               │     ECR     │                         │  ECS Tasks  │
+       │                               │  Repository │                         │             │
+       │                               │             │                         │             │
+       │                               └─────────────┘                         └─────────────┘
+       │                                                                              │
+       │                                                                              ▼
+       │                                                                       ┌─────────────┐
+       │                                                                       │             │
+       └───────────────────────────────────────────────────────────────────────▶│    ALB      │
+                                                                               │             │
+                                                                               └─────────────┘
+                                                                                      │
+                                                                                      ▼
+                                                                               ┌─────────────┐
+                                                                               │             │
+                                                                               │   Users     │
+                                                                               │             │
+                                                                               └─────────────┘
+
+Pipeline Flow:
+1. Developer pushes code to GitHub repository
+2. AWS CodePipeline detects changes and starts the pipeline
+3. CodeBuild builds the Docker image and runs tests
+4. Docker image is pushed to Amazon ECR
+5. CodeDeploy deploys the application to ECS using blue/green deployment
+6. Application Load Balancer routes traffic to the new version
+7. Users access the application through the ALB

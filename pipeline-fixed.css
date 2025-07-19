@@ -1,0 +1,283 @@
+/* AWS CI/CD Pipeline Visualization Styles */
+
+/* Custom AWS-inspired color palette */
+:root {
+    --aws-blue: #232F3E;
+    --aws-orange: #FF9900;
+    --aws-light-blue: #1A73E8;
+    --success-green: #1E8E3E;
+    --error-red: #D93025;
+    --neutral-gray: #5F6368;
+    --light-gray: #f5f5f5;
+    --white: #FFFFFF;
+}
+
+/* Base styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-gray);
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styles */
+header {
+    background-color: var(--aws-blue);
+    color: var(--white);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid var(--aws-orange);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-style: italic;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+/* Pipeline container */
+.pipeline-container {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 30px 0;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pipeline-image-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.pipeline-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+button {
+    background-color: var(--aws-orange);
+    color: var(--white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #E88A00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Step indicators */
+.step-indicator {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: var(--aws-orange);
+    border-radius: 50%;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.5s, background-color 0.5s;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.step-indicator:hover {
+    transform: scale(1.1);
+}
+
+.step-indicator.active {
+    opacity: 1;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 153, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 153, 0, 0);
+    }
+}
+
+/* Animation dot */
+.animation-dot {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--aws-light-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(26, 115, 232, 0.7);
+    z-index: 5;
+    opacity: 1;
+}
+
+/* Details panel */
+.details-panel {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 30px;
+    border-left: 5px solid var(--aws-orange);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.details-title {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--aws-blue);
+    border-bottom: 2px solid var(--aws-orange);
+    padding-bottom: 8px;
+}
+
+.step-details {
+    display: none;
+}
+
+.step-details.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Legend */
+.legend {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 15px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.pending {
+    background-color: #ddd;
+}
+
+.in-progress {
+    background-color: var(--aws-orange);
+}
+
+.success {
+    background-color: var(--success-green);
+}
+
+.failure {
+    background-color: var(--error-red);
+}
+
+.security {
+    background-color: #9C27B0;
+}
+
+/* Explanation section */
+.explanation {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.explanation h2 {
+    color: var(--aws-blue);
+    border-bottom: 2px solid var(--aws-orange);
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.explanation h2:first-child {
+    margin-top: 0;
+}
+
+.explanation ul, .explanation ol {
+    padding-left: 25px;
+}
+
+.explanation li {
+    margin-bottom: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .controls {
+        flex-wrap: wrap;
+    }
+    
+    button {
+        margin: 5px;
+    }
+    
+    .legend {
+        flex-wrap: wrap;
+    }
+    
+    .legend-item {
+        margin: 5px 10px;
+    }
+}
